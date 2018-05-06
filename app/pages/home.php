@@ -9,7 +9,7 @@
             page to see the example route working</p>
             
             <?php
-                $conn_string = "host=dbase.dsa.missouri.edu dbname=s18group02 user=s18dbmsgroups password=corgis";
+                $conn_string = "host=dbase.dsa.missouri.edu dbname=s18dbmsgroups user=s18group02 password=corgis";
                 $dbconn = pg_connect($conn_string);
                 $stat = pg_connection_status($dbconn);
                 if ($stat === PGSQL_CONNECTION_OK) {
