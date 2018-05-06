@@ -20,7 +20,7 @@ $config['timezone'] = 'America/Los_Angeles';
 $config['session_duration'] = 60 * 60 * 24 * 7; // One week
 
 // This is the absolute path to your app, if it's in the root path, just use '/'
-$config['base_path']  = '/php-boilerplate/';
+$config['base_path']  = '/';
 
 // This is useful for development, it shows errors and ignores caching
 $config['debug_mode'] = true;
