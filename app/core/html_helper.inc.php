@@ -6,7 +6,7 @@ class HtmlHelper
 {
     var $config;
 
-    public function HtmlHelper() {
+    public function __construct() {
         global $config;
         $this->config = $config;
     }
