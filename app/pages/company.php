@@ -1,33 +1,29 @@
-<div class="portfolios">
-    <h2> Portfolios </h2>
+<div class="portfolios company">
+    <h2> Company: Apple </h2>
+    <div class="company-details">
+      <div><b>Status:</b> Active </div>
+      <div><b>Client Since:</b> 10/02/17 </div>
+      <div><b>Address:</b> 1234 Sam's Butt </div>
+    </div>
     <div class="item-list">
         <?php 
           $colors = array("red", "green", "blue", "yellow"); 
           $data = array(
             array(
                 'id' => 1,
-                'company_name' => 'Apple',
-                'projects' => array('Solder', 'Procter')
+                'project' => 'Solder'
             ),
         
             array(
                 'id' => 2,
-                'company_name' => 'Target',
-                'projects' => array('Tiger Walker')
+                'project' => 'Procter'
             ),
           );
         ?>
 
         <?php foreach ($data as $value): ?>
           <div class="item box-shadow blah-toggler" data-target="<?php echo $value['id']; ?>">
-              <div class="name"><?php echo $value['company_name'] ?></div>
-              
-              <div class="project-header"> Projects </div>
-              <div class="project-list">
-                  <?php foreach ($value['projects'] as $project): ?>
-                    <div> <?php echo $project; ?> </div>
-                  <?php endforeach; ?>
-              </div>
+              <div class="name"><?php echo $value['project'] ?></div>
           </div>
         <?php endforeach; ?>
         
@@ -40,12 +36,16 @@
     $( "#portfolio-add" ).click(function() {
         console.log("here");
         console.log(window);
-        window.location.pathname = 'index.php/portfolio/newPortfolio';
+        window.location.pathname = 'index.php/portfolio/' + <?php echo _get(0); ?> + '/newCompany';
+    });
+    $( "#portfolio-edit" ).click(function() {
+        console.log("here");
+        console.log(window);
+        window.location.pathname = 'index.php/portfolio/' + <?php echo _get(0); ?> + '/editCompany';
     });
     $(".blah-toggler").on("click", function(){
         var t = $(this);
-        $('#' + t.data('target')).hide();
-        window.location.pathname = 'index.php/portfolio/' + t.data('target');
+        window.location.pathname = 'index.php/portfolio/' + <?php echo _get(0); ?> + '/project/' + t.data('target');
     });
 </script>
 <?php

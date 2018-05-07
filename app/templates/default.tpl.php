@@ -5,7 +5,9 @@
   <head>
     <title><?php echo $config['site_title']; ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
+
+
     <?php echo $html->css('css/bootstrap.min.css'); ?>
     <?php echo $html->css('css/bootstrap-grid.min.css'); ?>
     <?php echo $html->css('css/bootstrap-reboot.min.css'); ?>
