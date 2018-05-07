@@ -1,1 +1,46 @@
 /* Your custom application CSS */
+
+  .portfolios {
+  }
+  .portfolios .item {
+    width: 250px;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+  }
+  .portfolios .item-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .portfolios .name {
+    width: 100%;
+    text-align: center;
+  }
+  .portfolios .project-header {
+    font-size: 1.25rem;
+    text-align: center;
+    text-decoration: underline;
+  }
+  .portfolios .project-list {
+    display: flex;
+    flex-direction: column;
+  }
+  .portfolios .create {
+    position: fixed;
+    width: 40px;
+    height: 40px;
+    bottom: 10px;
+    right: 15px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #4CAF50;
+    color: white;
+    cursor: pointer; 
+  }
+  .box-shadow {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin: 15px;
+  }
