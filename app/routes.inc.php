@@ -32,5 +32,8 @@ $route['portfolio/([0-9]*)'] = 'pages/company.php';
 $route['portfolio/newPortfolio'] = 'pages/newPortfolio.php';
 
 $route['portfolio/([0-9]*)/newCompany'] = 'pages/newCompany.php';
+$route['portfolio/([0-9]*)/editCompany'] = 'pages/editCompany.php';
 
 $route['portfolio/([0-9]*)/project/([0-9]*)'] = 'pages/project.php';
+
+$route['analytics/piechart'] = 'pages/piechart.php';

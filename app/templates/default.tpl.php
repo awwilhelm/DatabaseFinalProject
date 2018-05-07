@@ -42,7 +42,7 @@
                   <a href="/index.php/hello/world">Shortcuts</a>
               </li>
               <li>
-                  <a href="/#">Overview</a>
+                  <a href="/index.php/analytics/piechart">Analytics</a>
               </li>
               <li>
                   <a href="/#">Events</a>
