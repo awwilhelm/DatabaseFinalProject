@@ -25,15 +25,17 @@ $route['ROOT'] = 'pages/home.php';
 // $cache_route['view-album/(.*?)(/page/(\d+))?'] =  60 * 60 * 2; // 2 hours
 
 // Demo route
-$route['hello/(.*)'] = 'pages/hello.php';
-$route['portfolio'] = 'pages/portfolio.php';
+$route[$config['base_path'] . 'hello/(.*)'] = 'pages/hello.php';
 
-$route['portfolio/([0-9]*)'] = 'pages/company.php';
-$route['portfolio/newPortfolio'] = 'pages/newPortfolio.php';
+$route[$config['base_path'] . 'portfolio'] = 'pages/portfolio.php';
+$route[$config['base_path'] . 'portfolio/newPortfolio'] = 'pages/newPortfolio.php';
 
-$route['portfolio/([0-9]*)/newCompany'] = 'pages/newCompany.php';
-$route['portfolio/([0-9]*)/editCompany'] = 'pages/editCompany.php';
+$route[$config['base_path'] . 'portfolio/([0-9]*)'] = 'pages/project.php';
+$route[$config['base_path'] . 'portfolio/([0-9]*)/newProject'] = 'pages/newProject.php';
+$route[$config['base_path'] . 'portfolio/([0-9]*)/editPortfolio'] = 'pages/editPortfolio.php';
 
-$route['portfolio/([0-9]*)/project/([0-9]*)'] = 'pages/project.php';
+$route[$config['base_path'] . 'portfolio/([0-9]*)/project/([0-9]*)'] = 'pages/milestones.php';
+$route[$config['base_path'] . 'portfolio/([0-9]*)/project/([0-9]*)/newMilestone'] = 'pages/newMilestone.php';
+$route[$config['base_path'] . 'portfolio/([0-9]*)/project/([0-9]*)/editProject'] = 'pages/editProject.php';
 
-$route['analytics/piechart'] = 'pages/piechart.php';
+$route[$config['base_path'] . 'analytics/piechart'] = 'pages/piechart.php';
