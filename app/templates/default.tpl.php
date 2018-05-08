@@ -36,13 +36,13 @@
                   </a>
               </li>
               <li>
-                  <a href="/index.php/portfolio">Portfolio</a>
+                  <a href=<?php echo $config['base_path'] . "/index.php/portfolio" ?> >Portfolio</a>
               </li>
               <li>
                   <a href="/index.php/hello/world">Shortcuts</a>
               </li>
               <li>
-                  <a href="/index.php/analytics/piechart">Analytics</a>
+                  <a href=<?php echo $config['base_path'] . "/index.php/analytics/piechart" ?> >Analytics</a>
               </li>
               <li>
                   <a href="/#">Events</a>
