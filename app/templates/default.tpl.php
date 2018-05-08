@@ -79,5 +79,5 @@
 
 <script>
     localStorage.setItem("base_path", '/');
-    //localStorage.setItem("base_path", '/~s18group02/DatabaseFinalProject');
+    //localStorage.setItem("base_path", '/~s18group02/DatabaseFinalProject/');
 </script>
