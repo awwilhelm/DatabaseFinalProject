@@ -24,7 +24,7 @@ $config['base_path']  = '';
 //$config['base_path']  = '/~s18group02/DatabaseFinalProject/';
 
 $config['base'] = '';
-$config['base'] = '~s18group02/DatabaseFinalProject/';
+//$config['base'] = '~s18group02/DatabaseFinalProject/';
 
 // This is useful for development, it shows errors and ignores caching
 $config['debug_mode'] = true;
