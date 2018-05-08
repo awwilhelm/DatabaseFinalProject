@@ -36,16 +36,16 @@
     $( "#portfolio-add" ).click(function() {
         console.log("here");
         console.log(window);
-        window.location.pathname = 'index.php/portfolio/' + <?php echo _get(0); ?> + '/newCompany';
+        window.location.pathname = localStorage.getItem("base_path") + '/index.php/portfolio/' + <?php echo _get(0) ?> + '/newCompany';
     });
     $( "#portfolio-edit" ).click(function() {
         console.log("here");
         console.log(window);
-        window.location.pathname = 'index.php/portfolio/' + <?php echo _get(0); ?> + '/editCompany';
+        window.location.pathname = localStorage.getItem("base_path") + 'index.php/portfolio/' + <?php echo _get(0) ?> + '/editCompany';
     });
     $(".blah-toggler").on("click", function(){
         var t = $(this);
-        window.location.pathname = 'index.php/portfolio/' + <?php echo _get(0); ?> + '/project/' + t.data('target');
+        window.location.pathname = localStorage.getItem("base_path") + 'index.php/portfolio/' + <?php echo _get(0); ?> + '/project/' + t.data('target');
     });
 </script>
 <?php

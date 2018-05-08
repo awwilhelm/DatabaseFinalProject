@@ -40,12 +40,12 @@
     $( "#portfolio-add" ).click(function() {
         console.log("here");
         console.log(window);
-        window.location.pathname = 'index.php/portfolio/newPortfolio';
+        window.location.pathname = localStorage.getItem("base_path") + 'index.php/portfolio/newPortfolio';
     });
     $(".blah-toggler").on("click", function(){
         var t = $(this);
         $('#' + t.data('target')).hide();
-        window.location.pathname = 'index.php/portfolio/' + t.data('target');
+        window.location.pathname = localStorage.getItem("base_path") + 'index.php/portfolio/' + t.data('target');
     });
 </script>
 <?php

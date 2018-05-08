@@ -36,13 +36,13 @@
                   </a>
               </li>
               <li>
-                  <a href=<?php echo $config['base'] . "/index.php/portfolio" ?> >Portfolio</a>
+                  <a href=<?php echo $config['base_path'] . "/index.php/portfolio" ?> >Portfolio</a>
               </li>
               <li>
                   <a href="/index.php/hello/world">Shortcuts</a>
               </li>
               <li>
-                  <a href=<?php echo $config['base'] . "/index.php/analytics/piechart" ?> >Analytics</a>
+                  <a href=<?php echo $config['base_path'] . "/index.php/analytics/piechart" ?> >Analytics</a>
               </li>
               <li>
                   <a href="/#">Events</a>
@@ -76,3 +76,8 @@
 
   </body>
 </html>
+
+<script>
+    localStorage.setItem("base_path", '/');
+    //localStorage.setItem("base_path", '/~s18group02/DatabaseFinalProject');
+</script>
