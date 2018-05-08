@@ -1,0 +1,66 @@
+<div class="portfolios company project task">
+    <h2> Task: Task name </h2>
+
+    <div class="company-details description">
+      <div><b>Description:</b> This is a demo description for this milestone </div>
+    </div>
+    <div class="company-details">
+      <div class="complete"><b>Complete:</b> 
+        <label class="checkbox-container checkbox">
+          <input type="checkbox" checked="checked">
+          <span class="checkmark"></span>
+        </label>
+      </div>
+      <div><b>Date Created:</b> 10/02/17 </div>
+    </div>
+    <div class="item-list comment-container">
+        <?php 
+          $colors = array("red", "green", "blue", "yellow"); 
+          $milestone = array(
+            array(
+                'id' => 1,
+                'comment' => 'Comment 1'
+            ),
+        
+            array(
+                'id' => 2,
+                'comment' => 'Comment 2'
+            ),
+            array(
+                'id' => 3,
+                'comment' => 'Comment 3'
+            ),
+            array(
+              'id' => 3,
+              'comment' => 'Comment 4'
+          ),
+          );
+        ?>
+
+        <?php foreach ($milestone as $value): ?>
+          <div class="item box-shadow blah-toggler comment-item" data-target="<?php echo $value['id']; ?>">
+              <div class="name"><?php echo $value['comment'] ?></div>
+          </div>
+        <?php endforeach; ?>
+        
+    </div>
+    <div id="portfolio-add" class="create box-shadow"> <i class="fas fa-plus"></i> </div>
+    <!-- <div id="portfolio-edit" class="edit box-shadow"> <i class="fas fa-edit"></i> </div> -->
+    <div id="portfolio-delete" class="delete box-shadow"> <i class="fas fa-times-circle"></i> </div>
+</div>
+
+<script>
+    $( "#portfolio-add" ).click(function() {
+        window.location.pathname = localStorage.getItem("base_path") + 'index.php/portfolio/' + <?php echo _get(0) ?> + '/project/' + <?php echo _get(1) ?> + '/milestone/'  + <?php echo _get(2) ?> + '/sprint/' + <?php echo _get(3) ?> + '/task/' + <?php echo _get(4) ?> + '/newComment';
+    });
+    // $( "#portfolio-edit" ).click(function() {
+    //     window.location.pathname = localStorage.getItem("base_path") + 'index.php/portfolio/' + <?php echo _get(0) ?> + '/project/' + <?php echo _get(1) ?> + '/milestone/'  + <?php echo _get(2) ?> + '/sprint/' + <?php echo _get(3) ?> + '/task/'  + <?php echo _get(4) ?>;
+    // });
+    $( "#portfolio-delete" ).click(function() {
+        window.location.pathname = localStorage.getItem("base_path") + 'index.php/portfolio/' + <?php echo _get(0) ?> + '/project/' + <?php echo _get(1) ?> + '/milestone/' + <?php echo _get(2) ?> + '/sprint/' + <?php echo _get(3) ?> ;
+    });
+    // $(".blah-toggler").on("click", function(){
+    //     var t = $(this);
+    //     window.location.pathname = localStorage.getItem("base_path") + 'index.php/portfolio/' + <?php echo _get(0); ?> + '/project/' + <?php echo _get(1) ?> + '/milestone/' + <?php echo _get(2) ?> + '/sprint/' + <?php echo _get(3) ?> + '/task/' + t.data('target');
+    // });
+</script>

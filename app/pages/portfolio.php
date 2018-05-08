@@ -38,9 +38,7 @@
 
 <script>
     $( "#portfolio-add" ).click(function() {
-        console.log("here");
-        console.log(window);
-        window.location.pathname = localStorage.getItem("base_path") + 'index.php/portfolio/newPortfolio';
+        window.location.pathname = localStorage.getItem("base_path") + 'index.php/portfolio/newCompany';
     });
     $(".blah-toggler").on("click", function(){
         var t = $(this);

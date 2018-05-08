@@ -1,8 +1,8 @@
 <div class="portfolios company project">
-    <h2> Project: Project Title </h2>
+    <h2> Sprint: Sprint name </h2>
 
     <div class="company-details description">
-      <div><b>Description:</b> This is a demo description </div>
+      <div><b>Description:</b> This is a demo description for this milestone </div>
     </div>
     <div class="company-details">
       <div class="complete"><b>Complete:</b> 
@@ -19,19 +19,23 @@
           $milestone = array(
             array(
                 'id' => 1,
-                'milestone_name' => 'Milestone 1'
+                'task_name' => 'Task 1'
             ),
         
             array(
                 'id' => 2,
-                'milestone_name' => 'Milestone 2'
+                'task_name' => 'Task 2'
+            ),
+            array(
+                'id' => 3,
+                'task_name' => 'Task 3'
             ),
           );
         ?>
 
         <?php foreach ($milestone as $value): ?>
           <div class="item box-shadow blah-toggler" data-target="<?php echo $value['id']; ?>">
-              <div class="name"><?php echo $value['milestone_name'] ?></div>
+              <div class="name"><?php echo $value['task_name'] ?></div>
           </div>
         <?php endforeach; ?>
         
@@ -43,17 +47,16 @@
 
 <script>
     $( "#portfolio-add" ).click(function() {
-        window.location.pathname = localStorage.getItem("base_path") + 'index.php/portfolio/' + <?php echo _get(0) ?> + '/project/' + <?php echo _get(1) ?> + '/newMilestone';
+        window.location.pathname = localStorage.getItem("base_path") + 'index.php/portfolio/' + <?php echo _get(0) ?> + '/project/' + <?php echo _get(1) ?> + '/milestone/'  + <?php echo _get(2) ?> + '/sprint/' + <?php echo _get(3) ?> + '/newTask/' ;
     });
     $( "#portfolio-edit" ).click(function() {
-        window.location.pathname = localStorage.getItem("base_path") + 'index.php/portfolio/' + <?php echo _get(0) ?> + '/project/' + <?php echo _get(1) ?> + '/editProject';
+        window.location.pathname = localStorage.getItem("base_path") + 'index.php/portfolio/' + <?php echo _get(0) ?> + '/project/' + <?php echo _get(1) ?> + '/milestone/'  + <?php echo _get(2) ?> + '/sprint/' + <?php echo _get(3) ?> + '/editSprint/';
     });
     $( "#portfolio-delete" ).click(function() {
-        window.location.pathname = localStorage.getItem("base_path") + 'index.php/portfolio/' + <?php echo _get(0) ?>;
+        window.location.pathname = localStorage.getItem("base_path") + 'index.php/portfolio/' + <?php echo _get(0) ?> + '/project/' + <?php echo _get(1) ?> + '/milestone/' + <?php echo _get(2) ?>;
     });
     $(".blah-toggler").on("click", function(){
         var t = $(this);
-        window.location.pathname = localStorage.getItem("base_path") + 'index.php/portfolio/' + <?php echo _get(0); ?> + '/project/' + <?php echo _get(1) ?> + '/milestone/' + t.data('target');
+        window.location.pathname = localStorage.getItem("base_path") + 'index.php/portfolio/' + <?php echo _get(0); ?> + '/project/' + <?php echo _get(1) ?> + '/milestone/' + <?php echo _get(2) ?> + '/sprint/' + <?php echo _get(3) ?> + '/task/' + t.data('target');
     });
 </script>
-        

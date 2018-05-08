@@ -28,14 +28,24 @@ $route['ROOT'] = 'pages/home.php';
 $route['hello/(.*)'] = 'pages/hello.php';
 
 $route['portfolio'] = 'pages/portfolio.php';
-$route['portfolio/newPortfolio'] = 'pages/newPortfolio.php';
+$route['portfolio/newCompany'] = 'pages/newCompany.php';
 
-$route['portfolio/([0-9]*)'] = 'pages/project.php';
+$route['portfolio/([0-9]*)'] = 'pages/company.php';
 $route['portfolio/([0-9]*)/newProject'] = 'pages/newProject.php';
-$route['portfolio/([0-9]*)/editPortfolio'] = 'pages/editPortfolio.php';
+$route['portfolio/([0-9]*)/editCompany'] = 'pages/editCompany.php';
 
-$route['portfolio/([0-9]*)/project/([0-9]*)'] = 'pages/milestones.php';
+$route['portfolio/([0-9]*)/project/([0-9]*)'] = 'pages/project.php';
 $route['portfolio/([0-9]*)/project/([0-9]*)/newMilestone'] = 'pages/newMilestone.php';
 $route['portfolio/([0-9]*)/project/([0-9]*)/editProject'] = 'pages/editProject.php';
+
+$route['portfolio/([0-9]*)/project/([0-9]*)/milestone/([0-9]*)'] = 'pages/milestone.php';
+$route['portfolio/([0-9]*)/project/([0-9]*)/milestone/([0-9]*)/newSprint'] = 'pages/newSprint.php';
+$route['portfolio/([0-9]*)/project/([0-9]*)/milestone/([0-9]*)/editMilestone'] = 'pages/editMilestone.php';
+
+$route['portfolio/([0-9]*)/project/([0-9]*)/milestone/([0-9]*)/sprint/([0-9]*)'] = 'pages/sprint.php';
+$route['portfolio/([0-9]*)/project/([0-9]*)/milestone/([0-9]*)/sprint/([0-9]*)/newTask'] = 'pages/newTask.php';
+$route['portfolio/([0-9]*)/project/([0-9]*)/milestone/([0-9]*)/sprint/([0-9]*)/editSprint'] = 'pages/editSprint.php';
+
+$route['portfolio/([0-9]*)/project/([0-9]*)/milestone/([0-9]*)/sprint/([0-9]*)/task/([0-9]*)'] = 'pages/task.php';
 
 $route['analytics/piechart'] = 'pages/piechart.php';
