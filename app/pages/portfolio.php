@@ -1,5 +1,4 @@
 <?php
-
 $conn_string = "host=dbase.dsa.missouri.edu dbname=s18dbmsgroups user=s18group02 password=corgis";
 $dbconn = pg_connect($conn_string);
 $stat = pg_connection_status($dbconn);
@@ -7,8 +6,16 @@ if ($stat !== PGSQL_CONNECTION_OK) {
     echo 'Connection status bad';
 }
 
-$portfolios = pg_fetch_all(pg_query($dbconn, "SELECT portfolio_id, user_id, company_name, updated_on FROM Client_Portfolio WHERE user_id = 1 ORDER BY updated_on DESC;"));
+$portfolios = pg_fetch_all(pg_query($dbconn, "SELECT portfolio_id, user_id, company_name, updated_on FROM Client_Portfolio WHERE user_id = ".$_COOKIE["user_id"] ." ORDER BY updated_on DESC;"));
 ?>
+
+<!-- <script>
+    //console.log(GetUserId());
+    GetUserId(function(data){
+        console.log(data);
+    })
+    
+</script> -->
 
 <div class="portfolios">
     <h2> Portfolios </h2>

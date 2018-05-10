@@ -9,31 +9,13 @@ if ($stat !== PGSQL_CONNECTION_OK) {
 $milestones = pg_fetch_all(pg_query($dbconn, "SELECT milestone_id, title, updated_on FROM Milestone WHERE p_id = 1 ORDER BY updated_on DESC;"));
 ?>
 
-<!-- <?php
-if ($_POST) {
-    echo '<pre>';
-    echo htmlspecialchars(print_r($_POST, true));
-    echo '</pre>';
-    echo $_POST["please"];
+<?php
+if (isset($_POST['SubmitButton'])) {
+    $addr_id = pg_fetch_all(pg_query($dbconn, "INSERT INTO s18group02.Address(street, city, state, zip_code, addr_id) VALUES ('".$_POST["street"]."', '".$_POST["city"]."', '".$_POST["state"]."', ".$_POST["zip-code"].", DEFAULT) returning addr_id;"))[0]["addr_id"];
+    pg_query($dbconn, "INSERT INTO s18group02.Client_Portfolio(company_name, addr_id, cstatus_id, user_id) VALUES ('".$_POST["company_name"]."', ".$addr_id.", 1, ".$_COOKIE["user_id"].");");
+    echo "<script>window.location.pathname = localStorage.getItem('base_path') + 'index.php/portfolio/';</script>";
 }
 ?>
-
-<form action="" method="post">
-  <div>
-    <div>
-    Name:  <input type="text" name="test" /><br />
-</div>
-</div>
-    Email: <input type="text" name="personal[email]" /><br />
-    Beer: <br />
-    <select multiple name="beer[]">
-        <option value="warthog">Warthog</option>
-        <option value="guinness">Guinness</option>
-        <option value="stuttgarter">Stuttgarter Schwabenbräu</option>
-    </select><br />
-    <input type="submit" value="submit me!" />
-</form>
- -->
 
 <div class="portfolio-new">
   <form  action="" method="post" class="container box-shadow">
@@ -41,7 +23,7 @@ if ($_POST) {
       <h1> Client Info </h1>
       <div class="item">
         Company Name:
-        <input type="text" name="please" name="company_name" class="form-control" />
+        <input type="text" name="company_name" class="form-control" />
       </div>
       <div class="item">
         <h3>Client Address:</h3>
@@ -58,7 +40,7 @@ if ($_POST) {
           </div>
           <div class="city-item">
             Zip:
-            <input name="zip" class="form-control" />
+            <input name="zip-code" class="form-control" />
           </div>
         </div>
       </div>
@@ -73,7 +55,7 @@ if ($_POST) {
       </div>
     </div>
     <div class="create">
-      <button id="submit" name="submit" type="submit" class="btn btn-success"> Create </button>
+      <button id="submit" name="SubmitButton" type="submit" class="btn btn-success"> Create </button>
     </div>
 
   </form>

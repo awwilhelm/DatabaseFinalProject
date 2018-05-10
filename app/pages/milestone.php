@@ -7,8 +7,8 @@ if ($stat !== PGSQL_CONNECTION_OK) {
     echo 'Connection status bad';
 }
 
-$milestone = pg_fetch_all(pg_query($dbconn, "SELECT M.title, M.description, S.status, M.date_created, M.updated_on FROM Milestone M, Status S WHERE M.status_id = S.status_id AND M.milestone_id = "._get(2)." ORDER BY M.updated_on DESC;"));
-$sprints = pg_fetch_all(pg_query($dbconn, "SELECT sprint_id, title, updated_on FROM Sprint WHERE m_id = "._get(2)." ORDER BY updated_on DESC;"));
+$milestone = pg_fetch_all(pg_query($dbconn, "SELECT M.title, M.description, S.status, M.date_created, M.updated_on FROM Client_Portfolio Po, Project P, Milestone M, Status S WHERE M.p_id = P.project_id AND P.portfolio_id = PO.portfolio_id AND PO.user_id = ".$_COOKIE["user_id"]." AND M.status_id = S.status_id AND M.milestone_id = "._get(2)." ORDER BY M.updated_on DESC;"));
+$sprints = pg_fetch_all(pg_query($dbconn, "SELECT S.sprint_id, S.title, S.updated_on FROM Client_Portfolio Po, Project P, Milestone M, Sprint S WHERE S.m_id = M.milestone_id AND M.p_id = P.project_id AND P.portfolio_id = PO.portfolio_id AND PO.user_id = ".$_COOKIE["user_id"]." AND m_id = "._get(2)." ORDER BY S.updated_on DESC;"));
 ?>
 
 <div class="portfolios company project">

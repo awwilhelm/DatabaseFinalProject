@@ -6,9 +6,8 @@ $stat = pg_connection_status($dbconn);
 if ($stat !== PGSQL_CONNECTION_OK) {
     echo 'Connection status bad';
 }
-
-$company = pg_fetch_all(pg_query($dbconn, "SELECT P.company_name, S.status, P.date_created, A.street, A.city, A.state, A.zip_code FROM Client_Portfolio P, Client_Status S, s18group02.Address A WHERE P.portfolio_id=" . _get(0) . " AND P.cstatus_id = S.cstatus_id AND P.addr_id = A.addr_id;"));
-$projects = pg_fetch_all(pg_query($dbconn, "SELECT project_id, title, updated_on FROM Project WHERE portfolio_id = "._get(0)." ORDER BY updated_on DESC;"));
+$company = pg_fetch_all(pg_query($dbconn, "SELECT P.company_name, S.status, P.date_created, A.street, A.city, A.state, A.zip_code FROM Client_Portfolio P, Client_Status S, Address A WHERE P.user_id = ".$_COOKIE["user_id"]." AND P.portfolio_id = " . _get(0) . " AND P.cstatus_id = S.cstatus_id AND P.addr_id = A.addr_id;"));
+$projects = pg_fetch_all(pg_query($dbconn, "SELECT P.project_id, P.title, P.updated_on FROM Client_Portfolio Po, Project P WHERE P.portfolio_id = "._get(0)." AND P.portfolio_id = Po.portfolio_id AND Po.user_id = ".$_COOKIE["user_id"]." ORDER BY updated_on DESC;"));
 ?>
 
 <div class="portfolios company">

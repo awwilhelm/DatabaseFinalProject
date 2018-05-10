@@ -9,9 +9,10 @@
           echo 'Connection status bad';
       }
 
-      $login = pg_num_rows(pg_query($dbconn, "select * from users where username='".$_POST["username"]."' and password='".$_POST["password"]."';"));
+      $login = pg_fetch_all(pg_query($dbconn, "select * from users where username='".$_POST["username"]."' and password='".$_POST["password"]."';"));
       
-      if($login > 0) {
+      if($login[0]["user_id"] > 0 ) {
+        setcookie("user_id", $login[0]["user_id"], time() + (86400 * 30), "/");
         echo '<script> localStorage.setItem("username", "'.$_POST["username"].'"); </script>';
         echo '<script> localStorage.setItem("password", "'.$_POST["password"].'"); </script>';
 
