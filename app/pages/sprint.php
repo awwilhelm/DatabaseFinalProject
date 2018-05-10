@@ -1,17 +1,25 @@
+<?php
+
+$conn_string = "host=dbase.dsa.missouri.edu dbname=s18dbmsgroups user=s18group02 password=corgis";
+$dbconn = pg_connect($conn_string);
+$stat = pg_connection_status($dbconn);
+if ($stat !== PGSQL_CONNECTION_OK) {
+    echo 'Connection status bad';
+}
+
+$sprint = pg_fetch_all(pg_query($dbconn, "SELECT S.title, S.description, St.status, S.start_date, S.updated_on FROM Sprint S, Status St WHERE S.status_id = St.status_id AND S.sprint_id = "._get(3)." ORDER BY S.updated_on DESC;"));
+$tasks = pg_fetch_all(pg_query($dbconn, "SELECT task_id, title, updated_on FROM Task WHERE sprint_id = "._get(3)." ORDER BY updated_on DESC;"));
+?>
+
 <div class="portfolios company project">
-    <h2> Sprint: Sprint name </h2>
+    <h2> Sprint: <?php echo $sprint[0]["title"] ?>  </h2>
 
     <div class="company-details description">
-      <div><b>Description:</b> This is a demo description for this milestone </div>
+      <div><b>Description:</b> <?php echo $sprint[0]["description"] ?>  </div>
     </div>
     <div class="company-details">
-      <div class="complete"><b>Complete:</b> 
-        <label class="checkbox-container checkbox">
-          <input type="checkbox" checked="checked">
-          <span class="checkmark"></span>
-        </label>
-      </div>
-      <div><b>Date Created:</b> 10/02/17 </div>
+      <div><b>Status:</b> <?php echo $sprint[0]["status"] ?> </div>
+      <div><b>Date Created:</b> <?php echo $sprint[0]["start_date"] ?>  </div>
     </div>
     <div class="item-list">
         <?php 
@@ -33,9 +41,10 @@
           );
         ?>
 
-        <?php foreach ($milestone as $value): ?>
-          <div class="item box-shadow blah-toggler" data-target="<?php echo $value['id']; ?>">
-              <div class="name"><?php echo $value['task_name'] ?></div>
+        <?php foreach ($tasks as $value): ?>
+          <div class="item box-shadow blah-toggler" data-target="<?php echo $value['task_id']; ?>">
+              <div class="name"><?php echo $value['title'] ?></div>
+              <div class="name"><?php echo $value['updated_on'] ?></div>
           </div>
         <?php endforeach; ?>
         

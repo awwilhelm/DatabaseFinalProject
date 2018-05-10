@@ -31,24 +31,15 @@
       <div id="sidebar-wrapper">
           <ul class="sidebar-nav">
               <li class="sidebar-brand">
-                  <a href="/#">
-                      Start Bootstrap
+                  <a href=<?php echo $config['base_path'] . "/index.php/portfolio" ?>>
+                      Home
                   </a>
               </li>
               <li>
                   <a href=<?php echo $config['base_path'] . "/index.php/portfolio" ?> >Portfolio</a>
               </li>
               <li>
-                  <a href="/index.php/hello/world">Shortcuts</a>
-              </li>
-              <li>
                   <a href=<?php echo $config['base_path'] . "/index.php/analytics/piechart" ?> >Analytics</a>
-              </li>
-              <li>
-                  <a href="/#">Events</a>
-              </li>
-              <li>
-                  <a href="/#">About</a>
               </li>
           </ul>
       </div>

@@ -1,3 +1,15 @@
+<?php
+
+$conn_string = "host=dbase.dsa.missouri.edu dbname=s18dbmsgroups user=s18group02 password=corgis";
+$dbconn = pg_connect($conn_string);
+$stat = pg_connection_status($dbconn);
+if ($stat !== PGSQL_CONNECTION_OK) {
+    echo 'Connection status bad';
+}
+
+$portfolios = pg_fetch_all(pg_query($dbconn, "SELECT portfolio_id, user_id, company_name, updated_on FROM Client_Portfolio WHERE user_id = 1 ORDER BY updated_on DESC;"));
+?>
+
 <div class="portfolios">
     <h2> Portfolios </h2>
     <div class="item-list">
@@ -18,22 +30,24 @@
           );
         ?>
 
-        <?php foreach ($data as $value): ?>
-          <div class="item box-shadow blah-toggler" data-target="<?php echo $value['id']; ?>">
+        <?php foreach ($portfolios as $value): ?>
+          <div class="item box-shadow blah-toggler" data-target="<?php echo $value['portfolio_id']; ?>">
               <div class="name"><?php echo $value['company_name'] ?></div>
               
-              <div class="project-header"> Projects </div>
+              <div class="name"><?php echo $value['updated_on'] ?></div>
+              
+              <!-- <div class="project-header"> Projects </div>
               <div class="project-list">
                   <?php foreach ($value['projects'] as $project): ?>
                     <div> <?php echo $project; ?> </div>
                   <?php endforeach; ?>
-              </div>
+              </div> -->
           </div>
         <?php endforeach; ?>
         
     </div>
     <div id="portfolio-add" class="create box-shadow"> <i class="fas fa-plus"></i> </div>
-    <div id="portfolio-edit" class="edit box-shadow"> <i class="fas fa-edit"></i> </div>
+    <!-- <div id="portfolio-edit" class="edit box-shadow"> <i class="fas fa-edit"></i> </div> -->
 </div>
 
 <script>

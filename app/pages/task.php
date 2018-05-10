@@ -1,17 +1,25 @@
+<?php
+
+$conn_string = "host=dbase.dsa.missouri.edu dbname=s18dbmsgroups user=s18group02 password=corgis";
+$dbconn = pg_connect($conn_string);
+$stat = pg_connection_status($dbconn);
+if ($stat !== PGSQL_CONNECTION_OK) {
+    echo 'Connection status bad';
+}
+
+$task = pg_fetch_all(pg_query($dbconn, "SELECT T.title, T.description, S.status, T.date_created, T.updated_on FROM Task T, Task_Status S WHERE T.tstatus_id = S.tstatus_id AND T.task_id = "._get(4)." ORDER BY T.updated_on DESC;"));
+$comments = pg_fetch_all(pg_query($dbconn, "SELECT * FROM Comment C LEFT JOIN Attachment A ON C.comment_id = A.comment_id LEFT JOIN Attachment_Type AT ON A.atype_id = AT.atype_id WHERE C.t_id = "._get(4)." ORDER BY C.updated_on DESC;"));
+?>
+
 <div class="portfolios company project task">
-    <h2> Task: Task name </h2>
+    <h2> Task: <?php echo $task[0]["title"] ?> </h2>
 
     <div class="company-details description">
-      <div><b>Description:</b> This is a demo description for this milestone </div>
+      <div><b>Description:</b> <?php echo $task[0]["description"] ?></div>
     </div>
     <div class="company-details">
-      <div class="complete"><b>Complete:</b> 
-        <label class="checkbox-container checkbox">
-          <input type="checkbox" checked="checked">
-          <span class="checkmark"></span>
-        </label>
-      </div>
-      <div><b>Date Created:</b> 10/02/17 </div>
+      <div><b>Status:</b> <?php echo $task[0]["status"] ?> </div>
+      <div><b>Date Created:</b> <?php echo $task[0]["date_created"] ?> </div>
     </div>
     <div class="item-list comment-container">
         <?php 
@@ -37,9 +45,13 @@
           );
         ?>
 
-        <?php foreach ($milestone as $value): ?>
-          <div class="item box-shadow blah-toggler comment-item" data-target="<?php echo $value['id']; ?>">
-              <div class="name"><?php echo $value['comment'] ?></div>
+        <?php foreach ($comments as $value): ?>
+          <div class="item box-shadow blah-toggler comment-item" data-target="<?php echo $value['comment_id']; ?>">
+              <div class="name"><b><?php echo $value['subject'] ?></b></div>
+              <div class=""><?php echo $value['content'] ?></div>
+
+              <div>Attachment File Name: <?php echo $value['filename'] ?></div>
+              <div>Type: <?php echo $value['type'] ?> </div>
           </div>
         <?php endforeach; ?>
         
