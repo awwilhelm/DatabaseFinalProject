@@ -26,6 +26,8 @@ $route['ROOT'] = 'pages/home.php';
 
 // Demo route
 $route['hello/(.*)'] = 'pages/hello.php';
+$route['login'] = 'pages/login.php';
+$route['auth'] = 'pages/auth.php';
 
 $route['portfolio'] = 'pages/portfolio.php';
 $route['portfolio/newCompany'] = 'pages/newCompany.php';

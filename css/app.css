@@ -197,3 +197,16 @@
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
 }
+
+.login .login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+}
+.login .login-submit {
+  margin: 10px 0px;
+  width: 100%;
+  background: #62a9e2;
+}
