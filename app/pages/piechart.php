@@ -50,24 +50,6 @@ $gUI = pg_num_rows(pg_query($dbconn, "SELECT * FROM task_has_tags WHERE task_id 
 $authentication = pg_num_rows(pg_query($dbconn, "SELECT * FROM task_has_tags WHERE task_id = 12"));
 $requirementsFramework = pg_num_rows(pg_query($dbconn, "SELECT * FROM task_has_tags WHERE task_id = 13"));
 
-//milestone types and sprint average by days
-$mtype1 = pg_fetch_array(pg_query($dbconn, "SELECT AVG(S.end_date - S.start_date) FROM Sprint S, Milestone M, Milestone_Type MT WHERE S.m_id = M.milestone_id AND M.mtype_id = 1;"));
-$mtype2 = pg_fetch_array(pg_query($dbconn, "SELECT AVG(S.end_date - S.start_date) FROM Sprint S, Milestone M, Milestone_Type MT WHERE S.m_id = M.milestone_id AND M.mtype_id = 2;"));
-$mtype3 = pg_fetch_array(pg_query($dbconn, "SELECT AVG(S.end_date - S.start_date) FROM Sprint S, Milestone M, Milestone_Type MT WHERE S.m_id = M.milestone_id AND M.mtype_id = 3;"));
-$mtype4 = pg_fetch_array(pg_query($dbconn, "SELECT AVG(S.end_date - S.start_date) FROM Sprint S, Milestone M, Milestone_Type MT WHERE S.m_id = M.milestone_id AND M.mtype_id = 4;"));
-
-if ($mtype1[0] == null){
-  $mtype1[0] = 0;
-}
-if ($mtype2[0] == null){
-  $mtype2[0] = 0;
-}
-if ($mtype3[0] == null){
-  $mtype3[0] = 0;
-}
-if ($mtype4[0] == null){
-  $mtype4[0] = 0;
-}
 
 ?>
 
@@ -87,7 +69,6 @@ if ($mtype4[0] == null){
       google.charts.setOnLoadCallback(tasksChart);
       google.charts.setOnLoadCallback(tasksTypeChart);
       google.charts.setOnLoadCallback(tagChart);
-      google.charts.setOnLoadCallback(sprintAvgChart);
 
       function projectsChart() {
 
@@ -303,40 +284,7 @@ if ($mtype4[0] == null){
         var chart = new google.visualization.PieChart(document.getElementById('tagChart'));
         chart.draw(data, options);
       }
-      ////////////////////
-      ////////////////////
-      ////////////////////
-      ////////////////////
-      ////////////////////
-      ////////////////////
-      ////////////////////
-      function sprintAvgChart() {
 
-          var mtype1 = parseInt("<?php echo $mtype1[0] ?>");
-          var mtype2 = parseInt("<?php echo $mtype2[0] ?>");
-          var mtype3 = parseInt("<?php echo $mtype3[0] ?>");
-          var mtype4 = parseInt("<?php echo $mtype4[0] ?>");
-
-        // Create the data table.
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Topping');
-        data.addColumn('number', 'Days');
-        data.addRows([
-          ['PRELIMINARY', mtype1],
-          ['ACTIVE DEVELOPMENT', mtype2],
-          ['FEATURE ADDITION', mtype3],
-          ['WRAP UP/SUPPORT', mtype4]
-        ]);
-
-        // Set chart options
-        var options = {'title':'AVERAGE DURATION OF SPRINTS BY MILESTONE TYPE',
-                       'width':600,
-                       'height':500};
-
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.ColumnChart(document.getElementById('sprintAvgChart'));
-        chart.draw(data, options);
-      }
 
     </script>
   </head>
