@@ -11,8 +11,17 @@ $milestones = pg_fetch_all(pg_query($dbconn, "SELECT milestone_id, title, update
 
 <?php
 if (isset($_POST['SubmitButton'])) {
+    if($_POST['status']== 'Active') {
+      $status = 1;
+    } else if($_POST['status']== 'On-Hold') {
+      $status = 2;
+    } else if($_POST['status']== 'Inactive') {
+      $status = 3;
+    } else {
+      $status = 4;
+    }
     $addr_id = pg_fetch_all(pg_query($dbconn, "INSERT INTO s18group02.Address(street, city, state, zip_code, addr_id) VALUES ('".$_POST["street"]."', '".$_POST["city"]."', '".$_POST["state"]."', ".$_POST["zip-code"].", DEFAULT) returning addr_id;"))[0]["addr_id"];
-    pg_query($dbconn, "INSERT INTO s18group02.Client_Portfolio(company_name, addr_id, cstatus_id, user_id) VALUES ('".$_POST["company_name"]."', ".$addr_id.", 1, ".$_COOKIE["user_id"].");");
+    pg_query($dbconn, "INSERT INTO s18group02.Client_Portfolio(company_name, addr_id, cstatus_id, user_id) VALUES ('".$_POST["company_name"]."', ".$addr_id.", ".$status.", ".$_COOKIE["user_id"].");");
     echo "<script>window.location.pathname = localStorage.getItem('base_path') + 'index.php/portfolio/';</script>";
 }
 ?>
@@ -49,7 +58,7 @@ if (isset($_POST['SubmitButton'])) {
         <select name="status">
           <option value="Active">Active</option>
           <option value="On-Hold">On Hold</option>
-          <option value="Inactive">Mercedes</option>
+          <option value="Inactive">Inactive</option>
           <option value="Need to Reach Out">Need to Reach Out</option>
         </select>
       </div>

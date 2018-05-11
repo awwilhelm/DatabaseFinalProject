@@ -58,6 +58,7 @@ $milestones = pg_fetch_all(pg_query($dbconn, "SELECT M.milestone_id, M.title, M.
         window.location.pathname = localStorage.getItem("base_path") + 'index.php/portfolio/' + <?php echo _get(0) ?> + '/project/' + <?php echo _get(1) ?> + '/editProject';
     });
     $( "#portfolio-delete" ).click(function() {
+        <?php pg_query($dbconn, "DELETE FROM s18group02.Project WHERE project_id = "._get(1).";"); ?>
         window.location.pathname = localStorage.getItem("base_path") + 'index.php/portfolio/' + <?php echo _get(0) ?>;
     });
     $(".blah-toggler").on("click", function(){

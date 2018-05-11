@@ -1,51 +1,75 @@
+<?php
+
+  $conn_string = "host=dbase.dsa.missouri.edu dbname=s18dbmsgroups user=s18group02 password=corgis";
+  $dbconn = pg_connect($conn_string);
+  $stat = pg_connection_status($dbconn);
+  if ($stat !== PGSQL_CONNECTION_OK) {
+      echo 'Connection status bad';
+  }
+?>
+
+<?php
+if (isset($_POST['SubmitButton'])) {
+    if($_POST['project']== 'web') {
+      $project = 1;
+    } else if($_POST['project']== 'report') {
+      $project = 2;
+    } else if($_POST['project']== 'batch') {
+      $project = 3;
+    } else if($_POST['project']== 'mobile') {
+      $project = 4;
+    } else {
+      $project = 5;
+    }
+
+    if($_POST['status']== 'notstarted') {
+      $status = 1;
+    } else if($_POST['status']== 'inprogress') {
+      $status = 2;
+    } else {
+      $status = 3;
+    }
+    pg_query($dbconn, "INSERT INTO s18group02.Project(title, description, ptype_id, status_id, portfolio_id) VALUES('".$_POST["title"]."', '".$_POST["description"]."', ".$project.", ".$status.", "._get(0).");");
+    echo "<script>window.location.pathname = localStorage.getItem('base_path') + 'index.php/portfolio/"._get(0)."';</script>";
+}
+?>
+
 <div class="portfolio-new">
-  <form id="login_form" class="container box-shadow">
+  <form action="" method="post" class="container box-shadow">
     <div >
       <h1> Client Info </h1>
       <div class="item">
-        Company Name:
-        <input name="company_name" class="form-control" />
+        Title:
+        <input name="title" class="form-control" />
       </div>
       <div class="item">
-        <h3>Client Address:</h3>
-        Street:
-        <input name="street" class="form-control" />
-        <div class="city-state-zip">
-          <div class="city-item">
-            City:
-            <input name="city" class="form-control" />
-          </div>
-          <div class="city-item">
-            State:
-            <input name="state" class="form-control" />
-          </div>
-          <div class="city-item">
-            Zip:
-            <input name="zip" class="form-control" />
-          </div>
-        </div>
+        Description:
+        <input name="description" class="form-control" />
       </div>
       <div class="item">
-        Client Status:
-        <select name="status">
-          <option value="volvo">Volvo</option>
-          <option value="saab">Saab</option>
-          <option value="mercedes">Mercedes</option>
-          <option value="audi">Audi</option>
+        Project Type:
+        <select name="project">
+          <option value="web">Web Application</option>
+          <option value="report">Report Delivery</option>
+          <option value="batch">Batch Process</option>
+          <option value="mobile">Mobile Application</option>
+          <option value="database">Database</option>
         </select>
       </div>
+      <div class="item">
+        Status:
+        <select name="status">
+          <option value="notstarted">Not Started</option>
+          <option value="inprogress">In Progress</option>
+          <option value="completed">Completed</option>
+        </select>
+      </div>
+      
+      
   </div>
   <div class="create">
-    <button id="submit" type="submit" class="btn btn-success"> Create </button>
+    <button id="submit" type="submit" name="SubmitButton" class="btn btn-success"> Create </button>
   </div>
 
   </form>
 </div>
-
-<script>
-  $('#login_form').on('submit', function(e) { //use on if jQuery 1.7+
-        e.preventDefault();  //prevent form from submitting
-        var data = $("#login_form :input").serializeArray();
-        console.log(data); //use the console for debugging, F12 in Chrome, not alerts
-    });
-</script>

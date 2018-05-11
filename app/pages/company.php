@@ -52,14 +52,15 @@ $projects = pg_fetch_all(pg_query($dbconn, "SELECT P.project_id, P.title, P.upda
 
 <script>
     $( "#portfolio-add" ).click(function() {
-        console.log("here");
-        console.log(window);
         window.location.pathname = localStorage.getItem("base_path") + '/index.php/portfolio/' + <?php echo _get(0) ?> + '/newProject';
     });
     $( "#portfolio-edit" ).click(function() {
-        console.log("here");
-        console.log(window);
         window.location.pathname = localStorage.getItem("base_path") + 'index.php/portfolio/' + <?php echo _get(0) ?> + '/editCompany';
+    });
+    $( "#portfolio-delete" ).click(function() {
+        <?php $addr_id = pg_fetch_all(pg_query($dbconn, "DELETE FROM s18group02.Client_Portfolio WHERE portfolio_id = "._get(0) ." RETURNING addr_id;"))[0]["addr_id"]?>;
+        <?php pg_query($dbconn, "DELETE FROM s18group02.address WHERE addr_id = ".$addr_id.";"); ?>
+        window.location.pathname = localStorage.getItem("base_path") + '/index.php/portfolio/';
     });
     $(".blah-toggler").on("click", function(){
         var t = $(this);
