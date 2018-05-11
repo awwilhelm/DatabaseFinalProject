@@ -36,7 +36,10 @@ if ($stat !== PGSQL_CONNECTION_OK) {
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <?php echo $html->js('js/bootstrap.min.js'); ?>
     <?php echo $html->js('js/app.js'); ?>
-    
+    <script>
+        //localStorage.setItem("base_path", '/');
+        localStorage.setItem("base_path", '/~s18group02/DatabaseFinalProject/');
+    </script>
     <script>
         console.log(<?php echo $user?>);
         if(window.location.pathname == localStorage.getItem("base_path") || window.location.pathname == localStorage.getItem("base_path") +'index.php'  || window.location.pathname == localStorage.getItem("base_path") +'index.php/') {
@@ -107,7 +110,3 @@ if ($stat !== PGSQL_CONNECTION_OK) {
   </body>
 </html>
 
-<script>
-    //localStorage.setItem("base_path", '/');
-    localStorage.setItem("base_path", '/~s18group02/DatabaseFinalProject/');
-</script>
