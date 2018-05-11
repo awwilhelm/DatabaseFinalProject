@@ -7,8 +7,8 @@ if ($stat !== PGSQL_CONNECTION_OK) {
     echo 'Connection status bad';
 }
 
-$project = pg_fetch_all(pg_query($dbconn, "SELECT P.title, P.description, S.status, P.date_created, P.updated_on FROM Client_Portfolio Po, Project P, Status S WHERE P.portfolio_id = Po.portfolio_id AND P.status_id = S.status_id AND Po.user_id = ".$_COOKIE["user_id"]." AND P.project_id = "._get(1)." ORDER BY P.updated_on DESC;"));
-$milestones = pg_fetch_all(pg_query($dbconn, "SELECT M.milestone_id, M.title, M.updated_on FROM Client_Portfolio Po, Project P, Milestone M WHERE M.p_id = P.project_id AND P.portfolio_id = PO.portfolio_id AND PO.user_id = ".$_COOKIE["user_id"]." AND M.p_id = "._get(1)." ORDER BY M.updated_on DESC;"));
+$project = pg_fetch_all(pg_query($dbconn, "SELECT P.title, P.description, S.status, CAST(P.date_created AS DATE), P.updated_on FROM Client_Portfolio Po, Project P, Status S WHERE P.portfolio_id = Po.portfolio_id AND P.status_id = S.status_id AND Po.user_id = ".$_COOKIE["user_id"]." AND P.project_id = "._get(1)." ORDER BY P.updated_on DESC;"));
+$milestones = pg_fetch_all(pg_query($dbconn, "SELECT M.milestone_id, M.title, CAST(M.updated_on AS DATE) FROM Client_Portfolio Po, Project P, Milestone M WHERE M.p_id = P.project_id AND P.portfolio_id = PO.portfolio_id AND PO.user_id = ".$_COOKIE["user_id"]." AND M.p_id = "._get(1)." ORDER BY M.updated_on DESC;"));
 ?>
 
 <div class="portfolios company project">

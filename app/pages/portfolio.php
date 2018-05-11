@@ -6,7 +6,7 @@ if ($stat !== PGSQL_CONNECTION_OK) {
     echo 'Connection status bad';
 }
 
-$portfolios = pg_fetch_all(pg_query($dbconn, "SELECT portfolio_id, user_id, company_name, updated_on FROM Client_Portfolio WHERE user_id = ".$_COOKIE["user_id"] ." ORDER BY updated_on DESC;"));
+$portfolios = pg_fetch_all(pg_query($dbconn, "SELECT portfolio_id, user_id, company_name, CAST(updated_on AS DATE) FROM Client_Portfolio WHERE user_id = ".$_COOKIE["user_id"] ." ORDER BY updated_on DESC;"));
 ?>
 
 <!-- <script>

@@ -8,7 +8,7 @@ if ($stat !== PGSQL_CONNECTION_OK) {
 }
 
 $sprint = pg_fetch_all(pg_query($dbconn, "SELECT S.title, S.description, St.status, S.start_date, S.updated_on FROM Client_Portfolio Po, Project P, Milestone M, Sprint S, Status St WHERE S.m_id = M.milestone_id AND M.p_id = P.project_id AND P.portfolio_id = PO.portfolio_id AND PO.user_id = ".$_COOKIE["user_id"]." AND S.status_id = St.status_id AND S.sprint_id = "._get(3)." ORDER BY S.updated_on DESC;"));
-$tasks = pg_fetch_all(pg_query($dbconn, "SELECT T.task_id, T.title, T.updated_on FROM Client_Portfolio Po, Project P, Milestone M, Sprint S, Task T WHERE T.sprint_id = S.sprint_id AND S.m_id = M.milestone_id AND M.p_id = P.project_id AND P.portfolio_id = PO.portfolio_id AND PO.user_id = ".$_COOKIE["user_id"]." AND T.sprint_id = "._get(3)." ORDER BY T.updated_on DESC;"));
+$tasks = pg_fetch_all(pg_query($dbconn, "SELECT T.task_id, T.title, CAST(T.updated_on AS DATE) FROM Client_Portfolio Po, Project P, Milestone M, Sprint S, Task T WHERE T.sprint_id = S.sprint_id AND S.m_id = M.milestone_id AND M.p_id = P.project_id AND P.portfolio_id = PO.portfolio_id AND PO.user_id = ".$_COOKIE["user_id"]." AND T.sprint_id = "._get(3)." ORDER BY T.updated_on DESC;"));
 ?>
 
 <div class="portfolios company project">

@@ -7,7 +7,7 @@ if ($stat !== PGSQL_CONNECTION_OK) {
     echo 'Connection status bad';
 }
 
-$task = pg_fetch_all(pg_query($dbconn, "SELECT T.title, T.description, St.status, T.date_created, T.updated_on FROM Client_Portfolio Po, Project P, Milestone M, Sprint S, Task T, Task_Status St WHERE T.sprint_id = S.sprint_id AND S.m_id = M.milestone_id AND M.p_id = P.project_id AND P.portfolio_id = PO.portfolio_id AND PO.user_id = ".$_COOKIE["user_id"]." AND T.tstatus_id = St.tstatus_id AND T.task_id = "._get(4)." ORDER BY T.updated_on DESC;"));
+$task = pg_fetch_all(pg_query($dbconn, "SELECT T.title, T.description, St.status, CAST(T.date_created AS DATE), T.updated_on FROM Client_Portfolio Po, Project P, Milestone M, Sprint S, Task T, Task_Status St WHERE T.sprint_id = S.sprint_id AND S.m_id = M.milestone_id AND M.p_id = P.project_id AND P.portfolio_id = PO.portfolio_id AND PO.user_id = ".$_COOKIE["user_id"]." AND T.tstatus_id = St.tstatus_id AND T.task_id = "._get(4)." ORDER BY T.updated_on DESC;"));
 $comments = pg_fetch_all(pg_query($dbconn, "SELECT * FROM Comment C LEFT JOIN Attachment A ON C.comment_id = A.comment_id LEFT JOIN Attachment_Type AT ON A.atype_id = AT.atype_id, Client_Portfolio Po, Project P, Milestone M, Sprint S, Task T WHERE C.t_id = T.task_id AND T.sprint_id = S.sprint_id AND S.m_id = M.milestone_id AND M.p_id = P.project_id AND P.portfolio_id = PO.portfolio_id AND PO.user_id = ".$_COOKIE["user_id"]." AND C.t_id = "._get(4)." ORDER BY C.updated_on DESC;"));
 ?>
 
