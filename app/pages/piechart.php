@@ -7,7 +7,6 @@ if ($stat !== PGSQL_CONNECTION_OK) {
     echo 'Connection status bad';
 }
 
-//project completion
 $projectsNotStarted = pg_num_rows(pg_query($dbconn, "SELECT * FROM project WHERE status_id = 1"));
 $projectsInProgress = pg_num_rows(pg_query($dbconn, "SELECT * FROM project WHERE status_id = 2"));
 $projectsCompleted = pg_num_rows(pg_query($dbconn, "SELECT * FROM project WHERE status_id = 3"));

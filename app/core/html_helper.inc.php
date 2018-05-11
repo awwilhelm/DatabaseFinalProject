@@ -49,7 +49,7 @@ class HtmlHelper
     }
 
     function link($name, $url, $options = null) {
-        if(strpos($url, 'http') !== 0)
+        if(strpos($url, 'https') !== 0)
             $url = $this->path_page($url);
 
         return '<a href="' . $url . '" ' . $this->_parse_options($options) . '>' . $name . '</a>';
@@ -60,7 +60,7 @@ class HtmlHelper
     }
 
     function img($url, $options = null) {
-        if(strpos($url, 'http') !== 0)
+        if(strpos($url, 'https') !== 0)
             $url = $this->path_content($url);
 
         return '<img src="' . $url . '" ' . $this->_parse_options($options) . '/>';
